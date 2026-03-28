@@ -1,87 +1,172 @@
-# MetaHunter 🔍
-**Metadata Extraction & Sanitization Tool for Kali Linux**
+# 🔍 MetaHunter
 
-> Built for cybersecurity professionals, OSINT analysts, and privacy-conscious users.
+**Professional Metadata Extraction & Sanitization Tool for Security Professionals**
 
----
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Kali%20Linux%20%7C%20Debian-red.svg)](https://kali.org)
 
-## What It Does
-
-MetaHunter extracts and removes hidden metadata from files — the kind of data that can silently expose GPS locations, author identities, device models, software names, and timestamps.
-
-**Supported file types:** Images (JPG, PNG, TIFF, RAW, HEIC...) · Audio (MP3, FLAC, WAV, OGG...) · Video (MP4, MKV, MOV...) · Documents (PDF, DOCX, XLSX, PPTX...)
+MetaHunter is a comprehensive metadata analysis tool designed for cybersecurity professionals, OSINT investigators, and digital forensics experts. Extract hidden metadata or strip it entirely to protect privacy—all from a clean, professional CLI interface.
 
 ---
 
-## Quick Start
+## ✨ Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **📸 Multi-Format Support** | Images (JPG, PNG, TIFF, HEIC, RAW), Audio (MP3, FLAC, WAV), Video (MP4, MKV, MOV), Documents (PDF, DOCX, XLSX, PPTX) |
+| **🔎 Deep Metadata Extraction** | GPS coordinates, author names, device models, software versions, timestamps, camera settings, edit history |
+| **⚠️ Privacy Risk Detection** | Automatically flags GPS locations, emails, phone numbers, and author identities |
+| **🧹 Safe Metadata Stripping** | Creates clean copies—never modifies original files |
+| **📊 Export Reports** | Save findings as JSON, CSV, or plain text for documentation |
+| **⚡ Batch Processing** | Analyze or sanitize entire folders recursively |
+
+---
+
+## 🚀 Quick Installation
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/MetaHunter.git
-cd MetaHunter
+# Clone the repository
+git clone https://github.com/kazim-45/metahunter_tool.git
+cd metahunter_tool
 
-# 2. Run the installer (handles all dependencies)
+# Run the automated installer
 chmod +x install.sh
 ./install.sh
 
-# 3. Launch
+# Launch MetaHunter
 python3 metahunter.py
 ```
 
----
-
-## Manual Install (if needed)
-
+**Manual Installation:**
 ```bash
-# Install system dependency (core engine)
-sudo apt install libimage-exiftool-perl
-
-# Install optional stripper
-sudo apt install mat2
-
-# Install Python UI library
+# Install core dependencies
+sudo apt install libimage-exiftool-perl mat2
 pip install rich
 ```
 
 ---
 
-## Features
+## 🎯 Use Cases
 
-| Feature | Description |
-|---|---|
-| **Extract Metadata** | Pull all embedded metadata from any supported file |
-| **Batch Extract** | Process an entire folder at once |
-| **Strip Metadata** | Remove all metadata — creates a clean copy, never modifies originals |
-| **Batch Strip** | Sanitize an entire folder |
-| **Export Reports** | Save findings as JSON, CSV, or plain TXT |
-| **Privacy Risk Flags** | GPS coordinates and PII fields are highlighted automatically |
+### 🔍 OSINT Investigations
+Extract metadata from publicly available files to identify device types, authors, and even GPS coordinates.
 
----
+### 🛡️ Digital Forensics
+Batch-analyze evidence folders for timestamp inconsistencies, device trails, and document authorship.
 
-## Use Cases
+### 🔒 Privacy Hardening
+Strip metadata before sharing sensitive files online—perfect for journalists, activists, and privacy-conscious users.
 
-- **OSINT / Reconnaissance** — Extract metadata from collected files to identify devices, authors, and locations
-- **Digital Forensics** — Batch-analyze evidence folders for timestamp and device trails
-- **Privacy Hardening** — Strip metadata before sharing sensitive files publicly
-- **CTF Challenges** — Quickly inspect challenge files for hidden metadata clues
+### 🏆 CTF Challenges
+Quickly inspect challenge files for hidden metadata clues during capture-the-flag competitions.
 
 ---
 
-## Safety
+## 📖 Usage Examples
 
-MetaHunter **never modifies your original files**. When stripping metadata, a clean copy is created in `MetaHunter_Reports/`. Your originals are always preserved.
+```bash
+# Extract metadata from a single file
+python3 metahunter.py -i image.jpg
+
+# Batch extract from entire folder
+python3 metahunter.py -d /path/to/folder
+
+# Strip metadata (creates clean copy)
+python3 metahunter.py -s image.jpg
+
+# Batch strip folder contents
+python3 metahunter.py -d /path/to/folder -s
+
+# Export report in JSON format
+python3 metahunter.py -i image.jpg -o report.json
+```
 
 ---
 
-## Requirements
+## 🖥️ Output Example
 
-- Kali Linux (or any Debian-based distro)
-- Python 3.8+
-- exiftool (`sudo apt install libimage-exiftool-perl`)
-- rich (`pip install rich`)
+```
+╭─────────────────────────────────────────────╮
+│           M E T A H U N T E R               │
+│         Metadata Analysis Tool              │
+╰─────────────────────────────────────────────╯
+
+📁 File: vacation_photo.jpg
+────────────────────────────────────────────────
+📍 GPS Coordinates: 40.7128° N, 74.0060° W
+👤 Author: John Doe
+📱 Device: iPhone 14 Pro
+🕒 Timestamp: 2024-07-15 14:23:45
+⚠️ Camera: Apple iPhone 14 Pro back camera
+
+[!] PRIVACY RISK DETECTED: Location data found
+[!] PRIVACY RISK DETECTED: Author name found
+
+Report saved to: MetaHunter_Reports/vacation_photo_metadata.json
+```
 
 ---
 
-## Legal
+## 📁 Project Structure
 
-This tool is intended for legal security research, digital forensics, and personal privacy protection. Only use it on files you own or have explicit authorization to analyze.
+```
+metahunter_tool/
+├── metahunter.py          # Main application
+├── install.sh             # Automated dependency installer
+├── requirements.txt       # Python dependencies
+├── README.md              # Documentation
+├── MetaHunter_Reports/    # Output directory (created on first run)
+└── LICENSE                # MIT License
+```
+
+---
+
+## 🔧 Requirements
+
+- **OS:** Kali Linux / Debian-based distributions
+- **Python:** 3.8 or higher
+- **Dependencies:** exiftool, mat2, rich
+
+---
+
+## ⚠️ Legal Disclaimer
+
+MetaHunter is designed for **legitimate security research, authorized penetration testing, and personal privacy protection**. Users are responsible for ensuring they have proper authorization before analyzing files. The author assumes no liability for misuse of this tool.
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, and feature requests are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## 👨‍💻 Author
+
+**Kazim Khan**
+- GitHub: [@kazim-45](https://github.com/kazim-45)
+- Portfolio [kazimportfolio](https://kazimportfolio.vercel.app)
+
+---
+
+## 🙏 Acknowledgments
+
+- Built with [exiftool](https://exiftool.org/) by Phil Harvey
+- Icons and inspiration from the OSINT community
+
+---
+
+**⭐ If this tool helped you, consider giving it a star!**
