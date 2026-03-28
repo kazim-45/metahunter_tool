@@ -1,1 +1,2 @@
+#install rich
 rich>=13.0.0
