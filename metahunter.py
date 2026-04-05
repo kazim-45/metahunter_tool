@@ -29,7 +29,8 @@ except ImportError:
     print("[!] Missing 'rich' library. Run: pip install rich")
     sys.exit(1)
 
-console = Console()
+W = 74  # Fixed UI width — keeps all panels/borders contained
+console = Console(width=W)
 
 # ─── Color Theme ─────────────────────────────────────────────
 C_ACCENT   = "bright_cyan"
@@ -100,7 +101,7 @@ def print_banner():
 
 def print_section(title: str):
     console.print()
-    console.print(Rule(f"[bold cyan] {title} [/bold cyan]", style="cyan"))
+    console.print(Rule(f"[bold cyan] {title} [/bold cyan]", style="cyan"), width=W)
     console.print()
 
 def print_status():
